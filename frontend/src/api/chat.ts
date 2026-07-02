@@ -10,6 +10,7 @@ export interface Message {
 
 export interface Chat {
   _id: string
+  id?: string
   userId: string
   title: string
   messages: Message[]
@@ -18,6 +19,7 @@ export interface Chat {
   context: Record<string, any>
   isPublic: boolean
   tags: string[]
+  messageCount?: number
   createdAt: string
   updatedAt: string
 }
