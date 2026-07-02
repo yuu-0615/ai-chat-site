@@ -1,12 +1,8 @@
 import { create } from 'zustand'
+import { Chat as ChatTypeAPI } from '../api/chat'
 
-interface Chat {
-  id: string
-  title: string
-  model: string
-  messageCount: number
-  createdAt: string
-  updatedAt: string
+interface Chat extends ChatTypeAPI {
+  id?: string
 }
 
 interface ChatState {
@@ -28,10 +24,10 @@ export const useChatStore = create<ChatState>((set) => ({
     set((state) => ({ chats: [chat, ...state.chats] })),
   removeChat: (id) =>
     set((state) => ({
-      chats: state.chats.filter((c) => c.id !== id),
+      chats: state.chats.filter((c) => c._id !== id),
     })),
   updateChat: (id, chat) =>
     set((state) => ({
-      chats: state.chats.map((c) => (c.id === id ? { ...c, ...chat } : c)),
+      chats: state.chats.map((c) => (c._id === id ? { ...c, ...chat } : c)),
     })),
 }))
