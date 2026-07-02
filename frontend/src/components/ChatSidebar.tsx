@@ -36,22 +36,22 @@ function ChatSidebar({
         ) : (
           chats.map((chat) => (
             <div
-              key={chat.id}
+              key={chat._id}
               className={`p-3 rounded-lg cursor-pointer transition flex justify-between items-center group ${
-                currentChatId === chat.id
+                currentChatId === chat._id
                   ? 'bg-blue-100 text-blue-900'
                   : 'bg-gray-100 hover:bg-gray-200'
               }`}
             >
               <div
-                onClick={() => onSelectChat(chat.id)}
+                onClick={() => onSelectChat(chat._id)}
                 className="flex-1 truncate"
               >
                 <p className="font-semibold truncate">{chat.title}</p>
-                <p className="text-xs opacity-75">{chat.messageCount} 件のメッセージ</p>
+                <p className="text-xs opacity-75">{chat.messageCount || chat.messages?.length || 0} 件のメッセージ</p>
               </div>
               <button
-                onClick={() => onDeleteChat(chat.id)}
+                onClick={() => onDeleteChat(chat._id)}
                 className="opacity-0 group-hover:opacity-100 transition p-1 hover:bg-red-500 hover:text-white rounded"
               >
                 <Trash2 size={16} />
