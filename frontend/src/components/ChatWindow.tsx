@@ -1,4 +1,4 @@
-import { Chat as ChatType, sendMessagePayload } from '../api/chat'
+import { Chat as ChatType, SendMessagePayload } from '../api/chat'
 import MessageList from './chat/MessageList'
 import MessageInput from './chat/MessageInput'
 import ChatHeader from './chat/ChatHeader'
@@ -19,10 +19,11 @@ function ChatWindow({ chat, onChatUpdate }: ChatWindowProps) {
 
     try {
       setLoading(true)
-      await chatAPI.sendMessage(chat._id, {
+      const payload: SendMessagePayload = {
         content,
         model: chat.model,
-      })
+      }
+      await chatAPI.sendMessage(chat._id, payload)
       onChatUpdate()
     } catch (error) {
       toast.error('メッセージの送信に失敗しました')
