@@ -51,8 +51,8 @@ function ChatPage() {
         model: 'gpt-4-turbo',
       })
       const newChat = response.data.data
-      setChats([newChat as any, ...chats])
-      setCurrentChatId(newChat.id)
+      setChats([newChat, ...chats])
+      setCurrentChatId(newChat._id)
       toast.success('新しいチャットを作成しました')
     } catch (error) {
       toast.error('チャット作成に失敗しました')
